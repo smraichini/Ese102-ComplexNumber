@@ -9,17 +9,7 @@ package complexnumber;
 public class ComplexNumber {
     private double re;
     private double im;
-    
-    public ComplexNumber(double re, double im) {
-        this.re = re;
-        this.im = im;
-    }
-    
-    public ComplexNumber() {
-        this.re = 0;
-        this.im = 0;
-    }
-    
+ 
     public String formatComplexNumber() {
         String r = this.getRe() + "+(" + this.getIm() + ")i";
         return r;
@@ -29,16 +19,30 @@ public class ComplexNumber {
         return re;
     }
 
-    public void setRe(double re) {
-        this.re = re;
-    }
-
     public double getIm() {
         return im;
     }
-
-    public void setIm(double im) {
-        this.im = im;
+    
+    public void setPolar(double mod, double arg){
+        this.im=Math.sin(arg)*mod;
+        this.re=Math.cos(arg)*mod;
+        }
+    
+    public void setCartesian(double re, double im ){
+        this.im=im;
+        this.re=re;
+        }
+    
+    
+    public double getModulus(){
+        
+        return(Math.sqrt(Math.pow(this.re,2)+Math.pow(this.im,2)));
     }
+    
+    public double getArgument(){
+        //return(Math.atan(this.im/this.re));
+        return(Math.atan2(this.im,this.re));
+    }
+    
     
 }
