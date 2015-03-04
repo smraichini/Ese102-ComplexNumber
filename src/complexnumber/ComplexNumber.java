@@ -40,8 +40,7 @@ public class ComplexNumber {
     }
     
     public double getArgument(){
-        //return(Math.atan(this.im/this.re));
-        return(Math.atan2(this.im,this.re));
+        return((Math.atan(this.im/this.re)*180)/3.14);
     }
     
     
