@@ -88,6 +88,38 @@ public class ComplexNumber {
     public double getIm() {
         return im;
     }
+    
+    public ComplexNumber add(ComplexNumber adde){
+        ComplexNumber somma = new ComplexNumber();
+        double reSomm=this.re+adde.getRe();
+        double imSomm=this.im+adde.getIm();
+        somma.setRectangular(reSomm, imSomm);
+        return somma;
+    }
+    
+    public ComplexNumber sub(ComplexNumber subs){
+        ComplexNumber sottr = new ComplexNumber();
+        double reSottr=this.re-subs.getRe();
+        double imSottr=this.im-subs.getIm();
+        sottr.setRectangular(reSottr, imSottr);
+        return sottr;
+    }
+    
+    public ComplexNumber mult(ComplexNumber molti){
+        ComplexNumber moltiplic = new ComplexNumber();
+        double modMoltiplic=this.getModulus()*molti.getModulus();
+        double argMoltiplic=this.getArgument()+molti.getArgument();
+        moltiplic.setPolar(modMoltiplic, argMoltiplic);
+        return moltiplic;
+    }
+    
+    public ComplexNumber div(ComplexNumber molti){
+        ComplexNumber division = new ComplexNumber();
+        double modDivision=this.getModulus()/division.getModulus();
+        double argDivision=this.getArgument()-division.getArgument();
+        division.setPolar(modDivision, argDivision);
+        return division;
+    }
 }
 
 /*

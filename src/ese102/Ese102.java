@@ -24,6 +24,7 @@ public class Ese102 {
         double x = 0,y = 0;
         ComplexNumber n1=new ComplexNumber();
         ComplexNumber n2=new ComplexNumber();
+        n2.setRectangular(3, 4);
         System.out.println("Benvenuto nel più innovativo software di gestione di coordinate polari e rettangolari");
         while(w!=1 && w!=2)
         {
@@ -115,6 +116,9 @@ public class Ese102 {
            catch(NumberFormatException e ){
                  System.out.println("Scelta non valida");
            }
+            ComplexNumber c=n1.add(n2);
+           System.out.println("Il valore di Re è"+" "+c.getRe());
+        System.out.println("Il valore di Im è"+" "+c.getIm());
     }
       
     }
