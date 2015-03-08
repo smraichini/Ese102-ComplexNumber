@@ -105,7 +105,7 @@ public class ComplexNumber {
         return sottr;
     }
     
-    public ComplexNumber mult(ComplexNumber molti){
+    public ComplexNumber multiply(ComplexNumber molti){
         ComplexNumber moltiplic = new ComplexNumber();
         double modMoltiplic=this.getModulus()*molti.getModulus();
         double argMoltiplic=this.getArgument()+molti.getArgument();
@@ -113,13 +113,21 @@ public class ComplexNumber {
         return moltiplic;
     }
     
-    public ComplexNumber div(ComplexNumber molti){
+    public ComplexNumber divide(ComplexNumber molti){
         ComplexNumber division = new ComplexNumber();
         double modDivision=this.getModulus()/division.getModulus();
         double argDivision=this.getArgument()-division.getArgument();
         division.setPolar(modDivision, argDivision);
         return division;
     }
+    
+    public ComplexNumber getConjugate(){
+        ComplexNumber con = new ComplexNumber();
+        con.setRectangular(this.re,-this.im);
+        return con;
+        
+    }
+    
 }
 
 /*

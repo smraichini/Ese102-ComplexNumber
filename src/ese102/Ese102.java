@@ -116,9 +116,26 @@ public class Ese102 {
            catch(NumberFormatException e ){
                  System.out.println("Scelta non valida");
            }
+           
+            
+            System.out.println("Il valore del numero da te inserito sommato a 3+4i è uguale a:");
             ComplexNumber c=n1.add(n2);
-           System.out.println("Il valore di Re è"+" "+c.getRe());
-        System.out.println("Il valore di Im è"+" "+c.getIm());
+            System.out.println(c.formatComplexNumber());
+            c=new ComplexNumber();
+            System.out.println("Il valore del numero da te inserito sottrattaendo 3+4i è uguale a:");
+            c=n1.sub(n2);
+            System.out.println(c.formatComplexNumber());
+            c=new ComplexNumber();
+            System.out.println("Il valore del numero da te inserito moltiplicato per 3+4i è uguale a:");
+            c=n1.multiply(n2);
+            System.out.println(c.formatComplexNumber());
+            c=new ComplexNumber();
+            System.out.println("Il valore del numero da te inserito diviso per 3+4i è uguale a:");
+            c=n1.divide(n2);
+            System.out.println(c.formatComplexNumber());
+            System.out.println("Il valore del numero coniugato è "+ n1.getConjugate().formatComplexNumber());
+            
+         
     }
       
     }
