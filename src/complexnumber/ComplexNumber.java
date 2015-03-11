@@ -7,18 +7,28 @@ package complexnumber;
 
 
 public class ComplexNumber {
+    static private double initRe;
+    static private double initIm;
     private double re;
     private double im;
  
-    /**
-  * Stampa il numero immaginario nel formato seguente: Parte Reale+(Parte Immaginaria)
-  * @return 
-  */
-    public String formatComplexNumber() {
-        String r = this.getRe() + "+(" + this.getIm() + ")i";
-        return r;
+    public ComplexNumber(){
+        this.re=initRe;
+        this.im=initIm;
     }
-
+    
+    static public void setInitRectangular(double re, double im){
+        initIm=im;
+        initRe=re;
+    }
+    
+    static public void setInitPolar(double arg, double mod){
+       if(mod < 0)
+        	throw new IllegalArgumentException("Modulus must be greater or equal to 0");
+        initRe = Math.cos(arg*Math.PI/180)*mod;
+        initIm = Math.sin(arg*Math.PI/180)*mod;
+    }
+  
     /**
  * Richiede modulo e argomento,considerare che la classe gestisce tutti gli angoli in modo sessagesimale
  * e che il modulo non può essere minore di 0
@@ -30,15 +40,20 @@ public class ComplexNumber {
      {
         this.re = Math.cos(arg*Math.PI/180)*mod;
         if(arg == 180){
-          this.im = 0;
+          this.im = Math.floor(Math.sin(arg*Math.PI/180)*mod);
+        }
+        if(arg%90 == 0 && arg%180 != 0){
+            this.re = Math.floor(Math.cos(arg*Math.PI/180)*mod);
         }
         else{
          this.im = Math.sin(arg*Math.PI/180)*mod;
         }
-     }
+         }
+        
+     
      else
      {
-        throw new IllegalArgumentException("Il valore del modulo deve essere maggiore di 0");
+        throw new IllegalArgumentException("Il valore del modulo deve essere maggiore o uguale a 0");
      }
     }
     
@@ -67,7 +82,7 @@ public class ComplexNumber {
      */
     public double getArgument(){
      int bugFix = 0;
-     if(this.re  < 0 && this.im == 0){
+     if(this.re  < 0){
      bugFix = 180;
     }
     return((Math.atan(this.im/this.re)*180)/Math.PI+bugFix);
@@ -89,45 +104,62 @@ public class ComplexNumber {
         return im;
     }
     
-    public ComplexNumber add(ComplexNumber adde){
+    public static ComplexNumber add(ComplexNumber operand1, ComplexNumber operand2){
         ComplexNumber somma = new ComplexNumber();
-        double reSomm=this.re+adde.getRe();
-        double imSomm=this.im+adde.getIm();
-        somma.setRectangular(reSomm, imSomm);
+        somma.re=operand1.getRe()+operand2.getRe();
+        somma.im=operand1.getIm()+operand2.getIm();
         return somma;
     }
     
-    public ComplexNumber sub(ComplexNumber subs){
+    public static ComplexNumber sub(ComplexNumber operand1, ComplexNumber operand2){
         ComplexNumber sottr = new ComplexNumber();
-        double reSottr=this.re-subs.getRe();
-        double imSottr=this.im-subs.getIm();
-        sottr.setRectangular(reSottr, imSottr);
+        sottr.re=operand1.getRe()-operand2.getRe();
+        sottr.im=operand1.getIm()-operand2.getRe();
         return sottr;
     }
     
-    public ComplexNumber multiply(ComplexNumber molti){
+    public static ComplexNumber multiply(ComplexNumber operand1, ComplexNumber operand2){
         ComplexNumber moltiplic = new ComplexNumber();
-        double modMoltiplic=this.getModulus()*molti.getModulus();
-        double argMoltiplic=this.getArgument()+molti.getArgument();
-        moltiplic.setPolar(modMoltiplic, argMoltiplic);
+        moltiplic.setPolar(operand1.getArgument()+operand2.getArgument(), operand1.getModulus()*operand2.getModulus());
         return moltiplic;
     }
     
-    public ComplexNumber divide(ComplexNumber molti){
-        ComplexNumber division = new ComplexNumber();
-        double modDivision=this.getModulus()/division.getModulus();
-        double argDivision=this.getArgument()-division.getArgument();
-        division.setPolar(modDivision, argDivision);
-        return division;
+    public static ComplexNumber divide(ComplexNumber operand1, ComplexNumber operand2){
+        ComplexNumber divisio = new ComplexNumber();
+        divisio.setPolar(operand1.getArgument()/operand2.getModulus(), operand1.getArgument()-operand2.getArgument());
+        return divisio;
     }
     
-    public ComplexNumber getConjugate(){
+    public static ComplexNumber getConjugate(ComplexNumber operand){
         ComplexNumber con = new ComplexNumber();
-        con.setRectangular(this.re,-this.im);
+        con=operand;
+        con.im=-con.im;
+        setInitRectangular(con.re,con.im);
         return con;
         
     }
     
+    @Override
+    
+    public String toString()
+    {
+       String r = this.getRe() + "+(" + this.getIm() + ")i";
+       return r;
+    }
+    
+
+    @Override
+	public boolean equals(Object re) {
+        boolean ver = false;
+	if(re instanceof ComplexNumber) {
+        	ComplexNumber p = (ComplexNumber)re;
+		if(this.re == p.getRe() && this.im == p.getIm()) {
+		ver = true;
+	 }
+	}
+		return ver;
+	}
+
 }
 
 /*

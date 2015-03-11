@@ -22,6 +22,8 @@ public class Ese102 {
         int w=0;
         boolean v=false;
         double x = 0,y = 0;
+        ComplexNumber.setInitRectangular(0,0);
+        ComplexNumber.setInitPolar(0,0);
         ComplexNumber n1=new ComplexNumber();
         ComplexNumber n2=new ComplexNumber();
         n2.setRectangular(3, 4);
@@ -68,7 +70,7 @@ public class Ese102 {
                     System.out.println("Numero non valido");
                 }
          }
-        n1.setRectangular(x, y);
+        n1.setRectangular(x,y);
         System.out.println("Il valore del modulo è"+" "+n1.getModulus());
         System.out.println("Il valore dell'argomento è"+" "+n1.getArgument());
         }
@@ -99,7 +101,7 @@ public class Ese102 {
                 catch (NumberFormatException e ){
                     System.out.println("Numero non valido");
                 }
-           catch(IllegalArgumentException e)
+                catch(IllegalArgumentException e)
                 {
                 System.out.println("Il valore del modulo deve essere maggiore o uguale a 0");
                 }
@@ -119,21 +121,21 @@ public class Ese102 {
            
             
             System.out.println("Il valore del numero da te inserito sommato a 3+4i è uguale a:");
-            ComplexNumber c=n1.add(n2);
-            System.out.println(c.formatComplexNumber());
+            ComplexNumber c=ComplexNumber.add(n1,n2);
+            System.out.println(c.toString());
             c=new ComplexNumber();
             System.out.println("Il valore del numero da te inserito sottrattaendo 3+4i è uguale a:");
-            c=n1.sub(n2);
-            System.out.println(c.formatComplexNumber());
+            c=ComplexNumber.sub(n1,n2);
+            System.out.println(c.toString());
             c=new ComplexNumber();
             System.out.println("Il valore del numero da te inserito moltiplicato per 3+4i è uguale a:");
-            c=n1.multiply(n2);
-            System.out.println(c.formatComplexNumber());
+            c=ComplexNumber.multiply(n1,n2);
+            System.out.println(c.toString());
             c=new ComplexNumber();
             System.out.println("Il valore del numero da te inserito diviso per 3+4i è uguale a:");
-            c=n1.divide(n2);
-            System.out.println(c.formatComplexNumber());
-            System.out.println("Il valore del numero coniugato è "+ n1.getConjugate().formatComplexNumber());
+            c=ComplexNumber.divide(n1,n2);
+            System.out.println(c.toString());
+            System.out.println("Il valore del numero coniugato è "+ ComplexNumber.getConjugate(n1).toString());
             
          
     }
