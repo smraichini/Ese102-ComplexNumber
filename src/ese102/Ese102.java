@@ -136,7 +136,6 @@ public class Ese102 {
             c=ComplexNumber.divide(n1,n2);
             System.out.println(c.toString());
             System.out.println("Il valore del numero coniugato è "+ ComplexNumber.getConjugate(n1).toString());
-            
          
     }
       

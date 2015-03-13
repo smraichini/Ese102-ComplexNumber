@@ -12,16 +12,32 @@ public class ComplexNumber {
     private double re;
     private double im;
  
+    /**
+  * Costruttore che utilizza membri di classe queli initRe e initIm per
+  * inizializzare l'oggetto al loro valore.
+  */
     public ComplexNumber(){
         this.re=initRe;
         this.im=initIm;
     }
     
+    /**
+     *Richiede le coordinate Rettangolari e inserisce le coordinate 
+     *in(nell'ordine) initRe e initIm
+     * @param re
+     * @param im 
+     */
     static public void setInitRectangular(double re, double im){
         initIm=im;
         initRe=re;
     }
     
+    /**
+     * Richiede le coordinate Polari e imposta tramite l'utilizzo 
+     * dell'argomento e il modulo(in quest'ordine) initRe e initIm
+     * @param arg
+     * @param mod 
+     */
     static public void setInitPolar(double arg, double mod){
        if(mod < 0)
         	throw new IllegalArgumentException("Modulus must be greater or equal to 0");
@@ -31,7 +47,7 @@ public class ComplexNumber {
   
     /**
  * Richiede modulo e argomento,considerare che la classe gestisce tutti gli angoli in modo sessagesimale
- * e che il modulo non può essere minore di 0
+ * e che il modulo non può essere minore di 0 e setta il numero complesso.
  * @param mod
  * @param arg 
  */
@@ -58,7 +74,7 @@ public class ComplexNumber {
     }
     
     /**
-     * Richiede le coordinate rettangolari di x e y
+     * Richiede e setta le coordinate rettangolari del numero complesso
      * @param re
      * @param im 
      */
@@ -104,6 +120,12 @@ public class ComplexNumber {
         return im;
     }
     
+    /**
+     * metodo di classe che esegue la somma tra due numeri complessi
+     * @param operand1
+     * @param operand2
+     * @return 
+     */
     public static ComplexNumber add(ComplexNumber operand1, ComplexNumber operand2){
         ComplexNumber somma = new ComplexNumber();
         somma.re=operand1.getRe()+operand2.getRe();
@@ -111,6 +133,12 @@ public class ComplexNumber {
         return somma;
     }
     
+    /**
+     * metodo di classe che esegue la sottrazione tra due numeri complessi
+     * @param operand1
+     * @param operand2
+     * @return 
+     */
     public static ComplexNumber sub(ComplexNumber operand1, ComplexNumber operand2){
         ComplexNumber sottr = new ComplexNumber();
         sottr.re=operand1.getRe()-operand2.getRe();
@@ -118,18 +146,32 @@ public class ComplexNumber {
         return sottr;
     }
     
+    /**
+     * metodo di classe che esegue la moltiplicazione tra due numeri complessi
+     * @param operand1
+     * @param operand2
+     * @return 
+     */
     public static ComplexNumber multiply(ComplexNumber operand1, ComplexNumber operand2){
         ComplexNumber moltiplic = new ComplexNumber();
         moltiplic.setPolar(operand1.getArgument()+operand2.getArgument(), operand1.getModulus()*operand2.getModulus());
         return moltiplic;
     }
-    
+    /**
+     * metodo di classe che esegue la divisione tra due numeri complessi
+     * @param operand1
+     * @param operand2
+     * @return 
+     */
     public static ComplexNumber divide(ComplexNumber operand1, ComplexNumber operand2){
         ComplexNumber divisio = new ComplexNumber();
         divisio.setPolar(operand1.getArgument()/operand2.getModulus(), operand1.getArgument()-operand2.getArgument());
         return divisio;
     }
-    
+    /**
+     * metodo di classe che restituisce il numero complesso coniugato
+     * @ComplexNumber operand
+     */
     public static ComplexNumber getConjugate(ComplexNumber operand){
         ComplexNumber con = new ComplexNumber();
         con=operand;
@@ -139,15 +181,23 @@ public class ComplexNumber {
         
     }
     
+    /**
+     * Stampa il numero complesso nel formato stabilito attraverso una stringa
+     * override del metodo toString della classe Object
+     * @return 
+     */
     @Override
-    
     public String toString()
     {
        String r = this.getRe() + "+(" + this.getIm() + ")i";
        return r;
     }
     
-
+/**
+ * override del metodo equals della classe Object
+ * @param re
+ * @return 
+ */
     @Override
 	public boolean equals(Object re) {
         boolean ver = false;
